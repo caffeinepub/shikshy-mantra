@@ -1,0 +1,22 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining all routes (landing, student signup/profile, admin panel/detail) with authentication guards and theme provider.",
+  "frontend/src/components/AppLayout.tsx": "Layout wrapper component that provides consistent structure with header, main content area, and footer across all pages.",
+  "frontend/src/components/AppHeader.tsx": "Responsive navigation header with logo, navigation links, authentication controls, and mobile menu support.",
+  "frontend/src/components/AppFooter.tsx": "Footer component displaying copyright, year, and attribution link to caffeine.ai with UTM tracking.",
+  "frontend/src/pages/LandingPage.tsx": "Landing page featuring hero section with logo and hero image, features showcase, and call-to-action sections for student signup and admin access.",
+  "frontend/src/pages/StudentSignupPage.tsx": "Student registration page containing the signup form with proper layout and success navigation to profile page.",
+  "frontend/src/components/StudentSignupForm.tsx": "Reusable form component for student registration with validation, error handling, and backend submission using React Hook Form.",
+  "frontend/src/pages/StudentProfilePage.tsx": "Displays authenticated user's submitted registrations with detailed information cards showing all signup fields.",
+  "frontend/src/pages/admin/AdminPanelPage.tsx": "Admin-only page displaying all student registrations in a table format with view detail actions.",
+  "frontend/src/pages/admin/AdminSignupDetailPage.tsx": "Admin detail view showing complete information for a specific student signup with back navigation.",
+  "frontend/src/components/auth/AuthControls.tsx": "Authentication UI component with sign-in/sign-out functionality and user profile dropdown menu.",
+  "frontend/src/components/auth/ProfileSetupModal.tsx": "Modal dialog for first-time login profile setup, prompting users to enter their name with proper loading states.",
+  "frontend/src/components/auth/RequireAuth.tsx": "Route guard component that requires authentication, showing sign-in prompt for unauthenticated users.",
+  "frontend/src/components/auth/RequireAdmin.tsx": "Route guard component that checks admin role authorization and shows access denied for non-admin users.",
+  "frontend/src/components/auth/AccessDeniedScreen.tsx": "User-friendly access denied screen displayed when authenticated non-admin users attempt to access admin-only pages.",
+  "frontend/src/hooks/useUserProfile.ts": "React Query hooks for fetching and saving user profiles and checking user roles with proper actor dependency handling.",
+  "frontend/src/hooks/useStudentSignups.ts": "React Query hooks for creating student signups and fetching current user's signups with cache invalidation.",
+  "frontend/src/hooks/useAdminSignups.ts": "React Query hooks for admin operations including fetching all signups and individual signup details by ID.",
+  "frontend/src/index.css": "Global styles with OKLCH color system using warm amber/orange education theme (avoiding blue/purple) for both light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending theme with custom colors, Inter font family, and design tokens matching the education brand palette."
+}

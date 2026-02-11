@@ -1,0 +1,139 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-public-landing-page-for-the-coaching-institute-named-shikshy-mantra-with-clear-navigation-to-student-signup-and-admin-panel",
+      "featureTitle": "Create a public landing page for the coaching institute named \"Shikshy mantra\" with clear navigation to Student Signup and Admin Panel.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/AppHeader.tsx",
+        "frontend/src/main.tsx",
+        "frontend/src/pages/LandingPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-student-signup-panel-that-lets-a-user-register-a-student-profile-at-minimum-full-name-phone-number-email-course-of-interest-and-then-view-their-submitted-profile",
+      "featureTitle": "Implement a Student Signup panel that lets a user register a student profile (at minimum: full name, phone number, email, course of interest) and then view their submitted profile.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/StudentSignupForm.tsx",
+        "frontend/src/hooks/useStudentSignups.ts",
+        "frontend/src/pages/StudentProfilePage.tsx",
+        "frontend/src/pages/StudentSignupPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-an-admin-panel-that-is-protected-so-only-designated-admin-principals-can-access-it-and-that-allows-admins-to-view-the-list-of-student-signups-and-open-a-detail-view-for-each-signup",
+      "featureTitle": "Implement an Admin Panel that is protected so only designated admin principals can access it, and that allows admins to view the list of student signups and open a detail view for each signup.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/auth/AccessDeniedScreen.tsx",
+        "frontend/src/components/auth/RequireAdmin.tsx",
+        "frontend/src/components/auth/RequireAuth.tsx",
+        "frontend/src/hooks/useAdminSignups.ts",
+        "frontend/src/pages/admin/AdminPanelPage.tsx",
+        "frontend/src/pages/admin/AdminSignupDetailPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-internet-identity-based-authentication-ui-for-the-app-including-sign-in-sign-out-controls-and-showing-the-current-signed-in-principal-or-a-friendly-logged-out-state",
+      "featureTitle": "Add Internet Identity based authentication UI for the app, including sign-in/sign-out controls and showing the current signed-in principal (or a friendly logged-out state).",
+      "files": [
+        "frontend/src/components/AppHeader.tsx",
+        "frontend/src/components/auth/AuthControls.tsx",
+        "frontend/src/components/auth/ProfileSetupModal.tsx",
+        "frontend/src/components/auth/RequireAuth.tsx",
+        "frontend/src/hooks/useUserProfile.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-coherent-visual-theme-across-the-app-layout-typography-spacing-color-palette-suitable-for-an-education-coaching-institute-brand-avoid-blue-purple-as-the-primary-palette",
+      "featureTitle": "Apply a coherent visual theme across the app (layout, typography, spacing, color palette) suitable for an education/coaching institute brand; avoid blue/purple as the primary palette.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/AppLayout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-generate-and-include-static-brand-images-for-shikshy-mantra-and-render-them-in-the-ui-from-frontend-public-assets-generated-not-via-backend",
+      "featureTitle": "Generate and include static brand images for \"Shikshy mantra\" and render them in the UI from frontend/public/assets/generated (not via backend).",
+      "files": [
+        "frontend/src/pages/LandingPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

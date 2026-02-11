@@ -1,0 +1,154 @@
+{
+  "kind": "build_request",
+  "title": "Shikshy mantra coaching institute app with Admin panel and Student signup",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a public landing page for the coaching institute named \"Shikshy mantra\" with clear navigation to Student Signup and Admin Panel.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Make app for Coching institute that's name Shikshy mantra, add a admin panel and add a student signup panel"
+        ]
+      },
+      "acceptanceCriteria": [
+        "App shows a landing/home page titled \"Shikshy mantra\"",
+        "Landing page includes prominent links/buttons to \"Student Signup\" and \"Admin Panel\"",
+        "Routes are accessible via client-side navigation (no full page reload required)"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement a Student Signup panel that lets a user register a student profile (at minimum: full name, phone number, email, course of interest) and then view their submitted profile.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "add a student signup panel"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Student can submit the signup form and receives a success state",
+        "Submitted student signup is persisted in the backend and remains available after page refresh",
+        "Student can view the details of their submitted signup (at least the fields they entered)",
+        "Form validates required fields and shows user-friendly error messages in English"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement an Admin Panel that is protected so only designated admin principals can access it, and that allows admins to view the list of student signups and open a detail view for each signup.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "add a admin panel"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Unauthenticated users cannot access the Admin Panel and are prompted to sign in",
+        "Authenticated non-admin users cannot access the Admin Panel and see an access denied message",
+        "Admin users can view a list/table of student signups",
+        "Admin users can click a signup to view full details"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add backend data models and APIs to store and retrieve student signups, including: create signup, list signups (admin-only), and get signup by id (admin-only).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes update method to create a student signup and returns a unique id",
+        "Backend exposes query methods for admin to list all signups and fetch a specific signup by id",
+        "Admin-only methods enforce authorization based on caller principal",
+        "Data is stored in stable state so signups persist across canister upgrades/restarts"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add Internet Identity based authentication UI for the app, including sign-in/sign-out controls and showing the current signed-in principal (or a friendly logged-out state).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can sign in and sign out using Internet Identity",
+        "UI clearly indicates whether the user is signed in or not",
+        "Admin Panel route requires authentication before attempting admin authorization"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Apply a coherent visual theme across the app (layout, typography, spacing, color palette) suitable for an education/coaching institute brand; avoid blue/purple as the primary palette.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All pages share consistent header/navigation styling",
+        "Theme uses a distinct, non-blue/purple primary palette consistently across buttons, links, and key UI accents",
+        "UI is readable and responsive on mobile and desktop"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Generate and include static brand images for \"Shikshy mantra\" and render them in the UI from frontend/public/assets/generated (not via backend).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are present under frontend/public/assets/generated",
+        "Landing page displays the logo image",
+        "Images are referenced as static assets (no backend endpoints used to serve them)"
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (all logic in backend/main.mo); only add migration.mo if upgrading existing stable state requires it.",
+    "Do not edit files in frontend immutablePaths; compose existing UI components instead of modifying them.",
+    "Use English for user-facing text."
+  ],
+  "nonGoals": [
+    "Payments, subscriptions, or invoicing",
+    "Chat or real-time messaging",
+    "Third-party auth providers other than Internet Identity",
+    "Mobile apps (React Native/Flutter)"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Minimal modern wordmark logo reading “Shikshy mantra” (shikshy-mantra-logo.dim_512x512.png)",
+      "Warm, education-themed hero illustration with books/stationery and abstract shapes (shikshy-mantra-hero.dim_1600x900.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "Use English for user-facing text"
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

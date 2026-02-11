@@ -1,0 +1,215 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Shikshy mantra coaching institute app (frontend: landing, student signup, admin panel, II auth)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create a public landing page titled “Shikshy mantra” with client-side navigation to Student Signup and Admin Panel.",
+      "acceptanceCriteria": [
+        "App shows a landing/home page titled \"Shikshy mantra\"",
+        "Landing page includes prominent links/buttons to \"Student Signup\" and \"Admin Panel\"",
+        "Routes are accessible via client-side navigation (no full page reload required)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the top-level App with client-side routing (hash-based or equivalent) and define routes for Landing, Student Signup, and Admin Panel. Include navigation wiring so moving between routes does not trigger full page reload."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "create",
+          "description": "Implement the public landing page for “Shikshy mantra” with prominent call-to-action buttons/links navigating to Student Signup and Admin Panel routes, plus space for brand logo and hero image."
+        },
+        {
+          "path": "frontend/src/components/AppHeader.tsx",
+          "operation": "create",
+          "description": "Create a shared header/navigation component used across all pages with links to Home, Student Signup, and Admin Panel, ensuring consistent navigation styling."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Ensure the root render wires the created App component and keeps client-side navigation working (no full page reload)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement Student Signup form (full name, phone, email, course) with validation, backend submission, and a view to see submitted profile details after refresh.",
+      "acceptanceCriteria": [
+        "Student can submit the signup form and receives a success state",
+        "Submitted student signup is persisted in the backend and remains available after page refresh",
+        "Student can view the details of their submitted signup (at least the fields they entered)",
+        "Form validates required fields and shows user-friendly error messages in English"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/StudentSignupPage.tsx",
+          "operation": "create",
+          "description": "Create the Student Signup page containing a form for full name, phone number, email, and course of interest. Perform required-field validation and display user-friendly English error messages. Use the shadcn-ui component set (e.g., form controls/buttons/cards) to structure the form UI; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/StudentProfilePage.tsx",
+          "operation": "create",
+          "description": "Create a page that displays the current user's submitted signup(s) and shows the details for at least the fields entered. Include a clear success state after submission (e.g., redirect here or show an inline success summary)."
+        },
+        {
+          "path": "frontend/src/hooks/useStudentSignups.ts",
+          "operation": "create",
+          "description": "Add React Query hooks for: submitting a signup (mutation) and fetching the current user's signups from the backend interface (query). Ensure refetch/invalidations occur after successful submission so data remains available after refresh."
+        },
+        {
+          "path": "frontend/src/components/StudentSignupForm.tsx",
+          "operation": "create",
+          "description": "Extract a reusable signup form component used by StudentSignupPage. Use shadcn-ui inputs/labels/buttons (or project’s equivalent shadcn-ui primitives) for consistent UI; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire Student Signup and Student Profile routes into the router and ensure navigation to them works via client-side routing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement an authenticated, admin-only Admin Panel UI to list student signups and view signup details with proper access denied/auth required states.",
+      "acceptanceCriteria": [
+        "Unauthenticated users cannot access the Admin Panel and are prompted to sign in",
+        "Authenticated non-admin users cannot access the Admin Panel and see an access denied message",
+        "Admin users can view a list/table of student signups",
+        "Admin users can click a signup to view full details"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/admin/AdminPanelPage.tsx",
+          "operation": "create",
+          "description": "Create the Admin Panel page that loads and displays a list/table of all student signups (admin-only). Use the authorization status from backend calls (e.g., role/admin checks) to decide whether to show content or access denied. Use shadcn-ui table/card components for the list UI; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminSignupDetailPage.tsx",
+          "operation": "create",
+          "description": "Create an Admin detail page/view for a selected signup that shows full details. It should be reachable by clicking a row/item from the Admin list."
+        },
+        {
+          "path": "frontend/src/components/auth/RequireAuth.tsx",
+          "operation": "create",
+          "description": "Add a small route guard component that blocks access when the user is not authenticated and shows a sign-in prompt/state (no admin check here yet). Integrate with the Internet Identity hook."
+        },
+        {
+          "path": "frontend/src/components/auth/RequireAdmin.tsx",
+          "operation": "create",
+          "description": "Add an admin-only guard wrapper that, after authentication, checks admin authorization via backend interface calls and renders an access denied state when the user is not an admin."
+        },
+        {
+          "path": "frontend/src/components/auth/AccessDeniedScreen.tsx",
+          "operation": "create",
+          "description": "Create a user-friendly Access Denied screen for authenticated non-admin users attempting to access the Admin Panel."
+        },
+        {
+          "path": "frontend/src/hooks/useAdminSignups.ts",
+          "operation": "create",
+          "description": "Add React Query hooks to fetch all signups and fetch a specific signup by id for the admin views. Ensure authorization failures are handled gracefully and surfaced as friendly UI states."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register and wire Admin routes in the router (Admin list and Admin signup detail). Wrap these routes with RequireAuth and RequireAdmin so unauthenticated users are prompted to sign in and non-admin users see access denied."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add Internet Identity authentication UI with sign-in/sign-out controls and show current signed-in state (preferably with profile name).",
+      "acceptanceCriteria": [
+        "User can sign in and sign out using Internet Identity",
+        "UI clearly indicates whether the user is signed in or not",
+        "Admin Panel route requires authentication before attempting admin authorization"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/auth/AuthControls.tsx",
+          "operation": "create",
+          "description": "Create a sign-in/sign-out control component using the existing Internet Identity hook. Show a friendly logged-out state, and when logged-in show the user’s display name (from UserProfile) rather than only the raw principal when possible. This supports the selected authorization component’s frontend guidance; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/ProfileSetupModal.tsx",
+          "operation": "create",
+          "description": "Implement a first-login profile setup modal that asks for the user’s name and saves it via the backend interface. Follow the selected authorization component guidance to avoid a modal flash by waiting for actor availability/profile fetch completion; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useUserProfile.ts",
+          "operation": "create",
+          "description": "Add React Query hooks to get/save the caller’s user profile and to fetch the caller’s role/admin status as needed for displaying auth state and guarding admin routes."
+        },
+        {
+          "path": "frontend/src/components/AppHeader.tsx",
+          "operation": "modify",
+          "description": "Add AuthControls into the shared header so sign-in/sign-out is available across the app. Ensure the header reflects signed-in vs logged-out state."
+        },
+        {
+          "path": "frontend/src/components/auth/RequireAuth.tsx",
+          "operation": "modify",
+          "description": "Update RequireAuth to display a clear sign-in prompt state when logged out, and to allow access when authenticated. Ensure this runs before any admin authorization checks."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Apply a coherent, responsive education brand theme across all pages with a non-blue/purple primary palette.",
+      "acceptanceCriteria": [
+        "All pages share consistent header/navigation styling",
+        "Theme uses a distinct, non-blue/purple primary palette consistently across buttons, links, and key UI accents",
+        "UI is readable and responsive on mobile and desktop"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Define global theme styles and CSS variables used by Tailwind/shadcn tokens (primary/secondary/background/etc.), selecting a non-blue/purple primary palette (e.g., warm orange/amber/green). Ensure typography and spacing defaults are consistent and responsive."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme extensions as needed to support the selected education brand palette and consistent UI (while avoiding blue/purple as primary). Keep changes aligned with existing CSS-variable based color system."
+        },
+        {
+          "path": "frontend/src/components/AppLayout.tsx",
+          "operation": "create",
+          "description": "Create a shared layout wrapper (header + content container + footer spacing) used by all pages to ensure consistent typography, spacing, and responsiveness."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap all routed pages with AppLayout to enforce consistent navigation styling and responsive layout across the app."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Include generated static brand images under frontend/public/assets/generated and render them in the UI.",
+      "acceptanceCriteria": [
+        "Generated images are present under frontend/public/assets/generated",
+        "Landing page displays the logo image",
+        "Images are referenced as static assets (no backend endpoints used to serve them)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/shikshy-mantra-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated logo image asset at the exact required path so it can be served as a static frontend asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/shikshy-mantra-hero.dim_1600x900.png",
+          "operation": "create",
+          "description": "Add the generated hero illustration image asset at the exact required path so it can be served as a static frontend asset."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "modify",
+          "description": "Render the static brand images in the landing page UI using the exact generated asset files at frontend/public/assets/generated/shikshy-mantra-logo.dim_512x512.png and frontend/public/assets/generated/shikshy-mantra-hero.dim_1600x900.png, ensuring they are referenced as static assets (no backend used)."
+        }
+      ]
+    }
+  ]
+}
